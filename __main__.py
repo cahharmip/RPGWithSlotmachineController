@@ -29,23 +29,9 @@ class  SlotMachineGame(SimpleGame):
         super(SlotMachineGame, self).init()
         
     def update(self,event):
-        if event.type == KEYDOWN and event.key == K_e and self.roulette.isPopup() == False and self.choicebox.isPopup() == False:
-            self.roulette.popUp(self.surface,self.font,SlotMachineGame.BLACK)
-            self.choicebox.popUp(self.surface)
-        if event.type == KEYDOWN and event.key == K_SPACE and self.roulette.isPaused() == True and self.roulette.isPopup() == True:
-            self.roulette.playAnimation()
-        elif event.type == KEYDOWN and event.key == K_SPACE and self.roulette.isPaused() == False and self.roulette.isPopup() == True:
-            self.roulette.pauseAnimation()
-            if self.roulette.frameValue() == self.roulette.targetFrame:
-                self.champ.wasBuff()
-            else:
-                self.champ.wasAttacked()
-        if event.type == KEYDOWN and event.key == K_DOWN and self.choicebox.isPaused() == True and self.choicebox.isPopup() == True:
-            self.choicebox.playNextFrame()
-        elif event.type == KEYDOWN and event.key == K_UP and self.choicebox.isPaused() == True and self.choicebox.isPopup() == True:
-            self.choicebox.playPrevFrame()
+        self.roulette.update(event,self.champ,self.surface,self.font,SlotMachineGame.BLACK)
+        self.choicebox.update(event,self.surface)
 
-    
     def render(self, surface):
         self.roulette.blitAnimaton(surface)
         self.choicebox.blitAnimaton(surface)

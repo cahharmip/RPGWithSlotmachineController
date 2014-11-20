@@ -69,8 +69,17 @@ class Cycle(object):
         targetFrameRect.topleft = (600 , 130)
         surface.blit(targetFrameDraw,targetFrameRect)
 
-    def update(self):
-        pass
+    def update(self,event,player,surface,font,color):
+        if event.type == KEYDOWN and event.key == K_e and self.isPopup() == False and self.isPopup() == False:
+            self.popUp(surface,font,color)
+        if event.type == KEYDOWN and event.key == K_SPACE and self.isPaused() == True and self.isPopup() == True:
+            self.playAnimation()
+        elif event.type == KEYDOWN and event.key == K_SPACE and self.isPaused() == False and self.isPopup() == True:
+            self.pauseAnimation()
+            if self.frameValue() == self.targetFrame:
+                player.wasBuff()
+            else:
+                player.wasAttacked()
 
 
 ##########################################################
@@ -128,6 +137,13 @@ class ChoiceBox(object):
             return True
         else:
             return False
+    def update(self,event,surface):
+        if event.type == KEYDOWN and event.key == K_e and self.isPopup() == False:
+            self.popUp(surface)
+        if event.type == KEYDOWN and event.key == K_DOWN and self.isPaused() == True and self.isPopup() == True:
+            self.playNextFrame()
+        elif event.type == KEYDOWN and event.key == K_UP and self.isPaused() == True and self.isPopup() == True:
+            self.playPrevFrame()
 
 ##########################################################
 
