@@ -28,16 +28,6 @@ class  SlotMachineGame(SimpleGame):
         super(SlotMachineGame, self).init()
         
     def update(self,event):
-        # if self.is_key_pressed(K_e) and self.roulette.isPopup() == False:
-        #     self.roulette.popUp(self.surface,self.font,SlotMachineGame.BLACK)
-        # if self.is_key_pressed(K_SPACE) and self.roulette.isPaused() == True and self.roulette.isPopup() == True:
-        #     self.roulette.playAnimation()
-        # elif self.is_key_pressed(K_SPACE) and self.roulette.isPaused() == False and self.roulette.isPopup() == True:
-        #     self.roulette.pauseAnimation()
-        #     if self.roulette.frameValue() == self.roulette.targetFrame:
-        #         self.champ.wasBuff()
-        #     else:
-        #         self.champ.wasAttacked()
         if event.type == KEYDOWN and event.key == K_e and self.roulette.isPopup() == False:
             self.roulette.popUp(self.surface,self.font,SlotMachineGame.BLACK)
         if event.type == KEYDOWN and event.key == K_SPACE and self.roulette.isPaused() == True and self.roulette.isPopup() == True:
