@@ -25,7 +25,6 @@ class SimpleGame(object):
 
     def __handle_event(self):
         for event in pygame.event.get(): # process events
-            print event
             if event.type == QUIT:
                 self.terminate()
             self.update(event)    

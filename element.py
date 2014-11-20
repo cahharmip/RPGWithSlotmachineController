@@ -33,7 +33,6 @@ class Player(object):
 
     def update(self):
         pass
-
         
 ##################################################
 

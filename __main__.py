@@ -10,7 +10,7 @@ from pygame.locals import *
 from gamelib import SimpleGame
 from random import randint
 from element import Player,Enemy
-from HUD import Cycle
+from HUD import Cycle , ChoiceBox
 
 class  SlotMachineGame(SimpleGame):
     WINDOW_WIDTH = 800
@@ -23,13 +23,15 @@ class  SlotMachineGame(SimpleGame):
         super(SlotMachineGame, self).__init__('SlotMachineGame',SlotMachineGame.WHITE,SlotMachineGame.WINDOW_SIZE)
         self.roulette = Cycle(SlotMachineGame.WINDOW_WIDTH,SlotMachineGame.WINDOW_HEIGHT)
         self.champ = Player()
+        self.choicebox = ChoiceBox(SlotMachineGame.WINDOW_WIDTH,SlotMachineGame.WINDOW_HEIGHT)
 
     def init(self):
         super(SlotMachineGame, self).init()
         
     def update(self,event):
-        if event.type == KEYDOWN and event.key == K_e and self.roulette.isPopup() == False:
+        if event.type == KEYDOWN and event.key == K_e and self.roulette.isPopup() == False and self.choicebox.isPopup() == False:
             self.roulette.popUp(self.surface,self.font,SlotMachineGame.BLACK)
+            self.choicebox.popUp(self.surface)
         if event.type == KEYDOWN and event.key == K_SPACE and self.roulette.isPaused() == True and self.roulette.isPopup() == True:
             self.roulette.playAnimation()
         elif event.type == KEYDOWN and event.key == K_SPACE and self.roulette.isPaused() == False and self.roulette.isPopup() == True:
@@ -38,9 +40,15 @@ class  SlotMachineGame(SimpleGame):
                 self.champ.wasBuff()
             else:
                 self.champ.wasAttacked()
+        if event.type == KEYDOWN and event.key == K_DOWN and self.choicebox.isPaused() == True and self.choicebox.isPopup() == True:
+            self.choicebox.playNextFrame()
+        elif event.type == KEYDOWN and event.key == K_UP and self.choicebox.isPaused() == True and self.choicebox.isPopup() == True:
+            self.choicebox.playPrevFrame()
+
     
     def render(self, surface):
         self.roulette.blitAnimaton(surface)
+        self.choicebox.blitAnimaton(surface)
         self.roulette.drawTarget(surface,self.font,SlotMachineGame.BLACK)
         self.champ.printDamage(surface,self.font,SlotMachineGame.BLACK)
         self.champ.printHP(surface,self.font,SlotMachineGame.BLACK)    
