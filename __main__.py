@@ -33,8 +33,8 @@ class  SlotMachineGame(SimpleGame):
         self.choicebox.update(event,self.surface)
 
     def render(self, surface):
-        self.roulette.blitAnimaton(surface)
-        self.choicebox.blitAnimaton(surface)
+        self.roulette.blitAnimaton(self.roulette,surface)
+        self.choicebox.blitAnimaton(self.choicebox,surface)
         self.roulette.drawTarget(surface,self.font,SlotMachineGame.BLACK)
         self.champ.printDamage(surface,self.font,SlotMachineGame.BLACK)
         self.champ.printHP(surface,self.font,SlotMachineGame.BLACK)    

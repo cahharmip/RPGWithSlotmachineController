@@ -1,7 +1,5 @@
 import pygame, sys, pyganim
 from pygame.locals import *
-from gamelib import SimpleGame
-from random import randint
 
 class Player(object):
     def __init__(self):
